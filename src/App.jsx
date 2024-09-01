@@ -1,63 +1,117 @@
-import { useState, useRef } from 'react';
+import { useState , useRef , useEffect} from 'react';
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import brasCubasImg from './assets/bras_cubas.jpeg';
 import Capa from './Capa';
-import SeletorCapitulos from './SeletorCapitulos';
-import BotoesControle from './BotoesControle';
+import SeletorCap  from './SeletorCapitulos';
+import BotooesControle  from './BotoesControle';
 import livro from './assets/capitulos/livro';
 import GerenciadorFaixa from './GerenciadorFaixa';
+import ConteinerProgress from './ContainerProgress';
+
 
 function App() {
-  // let taTocando = false;
-  const [taTocando, definirTaTocando] = useState(false);
-  const [faixaAtual, definirFaixaAtual] = useState(0);
+  const [taTocando, definirtaTocando] = useState(false);
+  const [faixaAtual, definirfaixaAtual] = useState(0);
+  const [tempoTotalFaixa, setempoTotalFaixa] = useState(0);
+  const [tempoAtualFaixa, setempoAtualFaixa] = useState(0);
   const tagAudio = useRef(null);
+  const barraProgresso = useRef(null)
+
+  useEffect(()=>{
+    if(taTocando){
+      tocarFaixa();
+    }
+  }, [
+    faixaAtual
+  ])
 
   const informacoesLivro = {
-    nome: 'Memórias Póstumas de Brás Cubas',
+    nome: 'Mémorias Póstumas de Brás Cubas',
     autor: 'Machado de Assis',
     totalCapitulos: 2,
     capa: brasCubasImg,
-    capitulos: livro,
-    textoAlternativo: 'Capa do livro Memórias Póstumas de Brás Cubas.',
+    textoalternativo: `Capa do Livro`,
+    capitulos: livro
   };
 
-  const tocarFaixa = () => {
+  function tocarFaixa() {
     tagAudio.current.play();
-    definirTaTocando(true);
+    definirtaTocando(true);
   };
 
   const pausarFaixa = () => {
     tagAudio.current.pause();
-    definirTaTocando(false);
+    definirtaTocando(false);
   };
 
-  const tocarOuPausarFaixa = () => {
-    if (taTocando) {
+  const tocarOupausarFaixa = () => {
+    if(taTocando){
       pausarFaixa();
-    } else {
+    }else{
       tocarFaixa();
     }
   };
 
+  const pularFaixa = () => {
+    if (faixaAtual < 1){
+      definirfaixaAtual(faixaAtual + 1)
+      
+    }else {
+      definirfaixaAtual(1)
+    }
+    
+  }
+
+  const voltarFaixa = () => {
+    if(faixaAtual > 0){
+      definirfaixaAtual(faixaAtual - 1)
+    }else{
+      definirfaixaAtual(0)
+    }
+  }
+
+  const avancar15s = ()=>{
+    tagAudio.current.currentTime += 15
+  }
+
+  const voltar15s = () => {
+    tagAudio.current.currentTime -= 15
+  }
+
+  const avancarPara = (evento) => {
+    const largura = barraProgresso.current.clientWidth;
+    const novoTempo = (evento.nativeEvent.offsetX/ largura) * tempoTotalFaixa;
+    tagAudio.current.currentTime = novoTempo;
+  }
+
   return (
     <>
-      <Capa
-        imagemCapa={informacoesLivro.capa}
-        textoAlternativo={informacoesLivro.textoAlternativo}
+      <Capa 
+      imagemCapa={informacoesLivro.capa}
+      textoalternativo={informacoesLivro.textoalternativo} 
       />
-      <SeletorCapitulos capituloAtual={faixaAtual + 1} />
-      <GerenciadorFaixa
-        faixa={informacoesLivro.capitulos[faixaAtual]}
-        referencia={tagAudio}
+      <SeletorCap
+      capituloAtual={faixaAtual + 1}
       />
-      <BotoesControle
-        taTocando={taTocando}
-        tocarOuPausarFaixa={tocarOuPausarFaixa}
+      <GerenciadorFaixa 
+      faixa={informacoesLivro.capitulos[faixaAtual]}
+      referencia = {tagAudio}
+      setTempoTotalFaixa={setempoTotalFaixa}
+      setTempoAtualFaixa = {setempoAtualFaixa}
+      />
+      <ConteinerProgress tempoTotalFaixa={tempoTotalFaixa} tempoAtualFaixa={tempoAtualFaixa} referencia = {barraProgresso} avancarPara={avancarPara}/>
+      <BotooesControle
+      taTocando = {taTocando}
+      definirtaTocando = {definirtaTocando}
+      tocarOupausarFaixa = {tocarOupausarFaixa}
+      pularFaixa = {pularFaixa}
+      voltarFaixa = {voltarFaixa}
+      avancar15s = {avancar15s}
+      voltar15s = {voltar15s}
       />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
