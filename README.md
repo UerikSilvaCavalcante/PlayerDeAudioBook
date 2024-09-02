@@ -2,27 +2,26 @@
 🎧 Audiobook Online
 React.js | Vite
 
-O projeto "Audiobook Online" é uma aplicação web  que permite aos usuários ouvir audiobooks de maneira simples e eficiente. Desenvolvido com React.js e Vite, este projeto oferece uma experiência de usuário fluida e interativa.
+The "Audiobook Online" project is a web application that allows users to listen to audiobooks in a simple and efficient way. Developed with React.js and Vite, this project offers a smooth and interactive user experience.
 
-Funcionalidades:
+Features:
 
-📚 Biblioteca de Audiobooks: Explore uma coleção de audiobooks.
-🎶 Player de Áudio: Controles de reprodução intuitivos, incluindo play, pause, avanço e retrocesso, para uma experiência de audição personalizada.
+📚 Audiobook Library: Explore a collection of audiobooks.
+🎶 Audio Player: Intuitive playback controls, including play, pause, fast forward, and rewind, for a personalized listening experience.
+Technologies Used:
 
-Tecnologias Utilizadas:
+Front-End: Developed with React.js for an interactive and responsive interface and Vite for ultra-fast build and reload times.
+State Management: Utilizes hooks and context to manage the application state efficiently.
+How to Use:
 
-Front-End: Desenvolvido com React.js para uma interface interativa e responsiva e Vite para um tempo de construção e recarregamento ultrarrápido.
-State Management: Utilização de hooks e context para gerenciar o estado da aplicação de maneira eficiente.
-Como Usar:
+Access the Site: Audiobook Online
+Browse the Library: Explore the collection of available audiobooks.
+Play an Audiobook: Select an audiobook and use the player to start listening.
+Project Objective:
 
-Acesse o Site: [Audiobook Online](https://playeraudiobook.netlify.app/)
-Navegue pela Biblioteca: Explore a coleção de audiobooks disponíveis.
-Reproduza um Audiobook: Selecione um audiobook e utilize o player para começar a audição.
+The main goal of this project is to provide an accessible and enjoyable platform for listening to audiobooks online. With an intuitive interface and interactive features, "Audiobook Online" aims to enhance the listening experience. It is ideal for book enthusiasts looking for a convenient way to consume literary content in audio format.
 
-Objetivo do Projeto:
+Contributions:
 
-O principal objetivo deste projeto é oferecer uma plataforma acessível e agradável para ouvir audiobooks online. Com uma interface intuitiva e recursos interativos, o "Audiobook Online" visa aprimorar a experiência de audição. Ideal para entusiastas de livros que buscam uma forma prática de consumir conteúdo literário em formato de áudio.
+Feel free to contribute improvements, report bugs, or suggest new features. Contributions are welcome!
 
-Contribuições:
-
-Sinta-se à vontade para contribuir com melhorias, relatar bugs ou sugerir novas funcionalidades. As contribuições são bem-vindas!
